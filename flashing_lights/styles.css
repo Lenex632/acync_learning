@@ -1,0 +1,21 @@
+#lights .light {
+    display: flex;
+    height: 2rem;
+    width: 2rem;
+    margin: 1rem;
+    border-radius: 50%;
+    opacity: 30%;
+}
+
+#lights #red-light.active {
+    box-shadow: 0 0 20px red;
+    opacity: 100%;
+}
+#lights #blue-light.active {
+    box-shadow: 0 0 20px blue;
+    opacity: 100%;
+}
+#lights #green-light.active {
+    box-shadow: 0 0 20px green;
+    opacity: 100%;
+}
