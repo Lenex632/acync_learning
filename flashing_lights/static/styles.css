@@ -6,7 +6,20 @@
     border-radius: 50%;
     opacity: 30%;
 }
-
+#settings .pull {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+#settings .pull button, #settings .pull input {
+    margin: 0 1rem;
+}
+#settings .pull .color {
+    width: 6rem;
+}
+#settings .pull button i::before {
+    font-size: 1.5rem;
+}
 #lights #red-light.active {
     box-shadow: 0 0 20px red;
     opacity: 100%;
@@ -18,4 +31,7 @@
 #lights #green-light.active {
     box-shadow: 0 0 20px green;
     opacity: 100%;
+}
+.hidden {
+    display: none !important;
 }
