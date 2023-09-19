@@ -20,18 +20,15 @@
 #settings .pull button i::before {
     font-size: 1.5rem;
 }
-#lights #red-light.active {
+#lights .bg-danger.active {
     box-shadow: 0 0 20px red;
     opacity: 100%;
 }
-#lights #blue-light.active {
+#lights .bg-primary.active {
     box-shadow: 0 0 20px blue;
     opacity: 100%;
 }
-#lights #green-light.active {
+#lights .bg-success.active {
     box-shadow: 0 0 20px green;
     opacity: 100%;
-}
-.hidden {
-    display: none !important;
 }

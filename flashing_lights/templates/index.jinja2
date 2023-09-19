@@ -16,13 +16,13 @@
 
     <div id="settings" class="container col-12">
         {% for i in range(pulls) %}
-            <div id="{{ i }}" class="pull">
+            <div id="setting-{{ i }}" class="pull">
                 <button class="btn btn-primary color">Blue</button>
                 <input type="range" class="form-range" value="0" max="9">
-                <button class="btn btn-secondary reload">
+                <button class="btn btn-secondary reload d-none">
                     <i class="bi bi-arrow-clockwise"></i>
                 </button>
-                <button class="btn btn-secondary close">
+                <button class="btn btn-secondary close d-none">
                     <i class="bi bi-x"></i>
                 </button>
                 <button class="btn btn-secondary plus">
@@ -33,9 +33,10 @@
     </div>
     <div id="lights" class="container d-flex mt-5 col-12 col-sm-8 justify-content-center">
         {% for i in range(lights) %}
-            <div id="{{ 2 * i }}" class="light bg-danger active"></div>
-            <div id="{{ 2 * i + 1 }}" class="light bg-primary"></div>
+            <div id="light-{{ 2 * i }}" class="light bg-danger"></div>
+            <div id="light-{{ 2 * i + 1 }}" class="light bg-primary"></div>
         {% endfor %}
+        <div id="light-{{ lights * 2 }}" class="light bg-success"></div>
     </div>
 
 
