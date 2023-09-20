@@ -3,8 +3,6 @@ import jinja2
 import aiohttp_jinja2
 import asyncio
 
-tasks = []
-
 
 @aiohttp_jinja2.template('index.jinja2')
 async def index_page(request):
@@ -19,10 +17,6 @@ async def add_light(request):
     return web.json_response('ok')
 
 
-async def add_setting(request):
-    return web.json_response('ok')
-
-
 async def init_app():
     app = web.Application()
 
@@ -31,7 +25,6 @@ async def init_app():
     app.router.add_static('/static', 'static', name='static')
     app.router.add_get('/', index_page)
     app.router.add_post('/add_light', add_light)
-    app.router.add_post('/add_setting', add_setting)
 
     return app
 

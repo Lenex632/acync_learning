@@ -34,13 +34,6 @@ function addLight(item) {
         .then(response => response.json())
         .then(json => console.log(JSON.stringify(json)));
 }
-function addSetting() {
-    fetch('http://0.0.0.0:8080/add_setting', {
-        method: 'POST',
-    })
-        .then(response => response.json())
-        .then(json => console.log(JSON.stringify(json)));
-}
 function flash(item) {
     item.classList.toggle('active')
     setTimeout(() => item.classList.toggle('active'), 200);
@@ -59,7 +52,6 @@ plus_btns.forEach(function (item, i, arr) {
         console.log(item);
         switch_visual(item.parentElement.querySelectorAll('.plus, .reload, .close'));
         addLight(item);
-        addSetting();
     };
 });
 color_btns.forEach(function (item, i, arr) {
