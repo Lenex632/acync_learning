@@ -2,7 +2,6 @@ import concurrent.futures
 import threading
 import queue
 import requests
-import json
 import csv
 
 from datetime import datetime, timezone
