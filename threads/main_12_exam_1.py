@@ -94,7 +94,7 @@ def write_to_file(target_dir: Path) -> None:
     while True:
         name, time, price = MAIN_QUEUE.get()
         file = target_dir.joinpath(f'{name}.csv')
-        date = [['time', 'price']] + [[time[i], price[i]] for i in range(len(time))]
+        date = [[time[i], price[i]] for i in range(len(time))]
 
         # запись в файл с помощью библиотеки csv
         with open(file, 'w+', newline='') as file:
