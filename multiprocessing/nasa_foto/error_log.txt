@@ -1,0 +1,2 @@
+2024-02-07 22:05:55,544, Ошибка при обработке URL-адреса: https://apod.nasa.gov/apod/image/2309/BlueHorse_Grelin_93.jpg
+Ошибка: 404 Client Error: Not Found for url: https://apod.nasa.gov/apod/image/2309/BlueHorse_Grelin_93.jpg
