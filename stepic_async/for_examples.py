@@ -1,30 +1,19 @@
 import asyncio
-from itertools import count
-import time
-
-_count = count(1)
 
 
-async def my_coro():
-    n = next(_count)
-    result = await asyncio.sleep(n, n)
-    print(f"{result=}")
-    return result
-
-
-def callback_task(args):
-    print(f"Вызван коллбэк с аргументом {args}")
+async def coro():
+    pass
 
 
 async def main():
-    task_1 = asyncio.create_task(my_coro())
-    print(task_1)
-    task_2 = asyncio.create_task(my_coro())
-    await task_2
+    try:
+        async with asyncio.TaskGroup() as tg:
+            tg.create_task(coro())
+            tg.create_task(coro())
+            raise asyncio.CancelledError("Галя, у нас отмена!")
+    except BaseException as error:
+        print(err)
 
 
-if __name__ == '__main__':
-    start_time = time.perf_counter()
+if __name__ == "__main__":
     asyncio.run(main())
-    print(f"all done in {time.perf_counter() - start_time:.2f}")
-
