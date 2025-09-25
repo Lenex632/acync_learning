@@ -12,7 +12,7 @@ async def main():
             tg.create_task(coro())
             raise asyncio.CancelledError("Галя, у нас отмена!")
     except BaseException as error:
-        print(err)
+        print(error)
 
 
 if __name__ == "__main__":
