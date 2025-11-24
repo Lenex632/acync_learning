@@ -1,30 +1,48 @@
 import asyncio
-from time import perf_counter
+import inspect
+from typing import Coroutine, Iterable
 
 
-class AsyncSimpleIterator:
-    def __init__(self, n: int = 0):
-        self.n = n
-        self.count = 0
+class ForCompletedIterator:
+    def __init__(self, coroutines: list[Coroutine]):
+        self.todo = {asyncio.create_task(coro) for coro in coroutines}
+        self.done = asyncio.Queue()
+        for coro in self.todo:
+            coro.add_done_callback(self.handle_callback)
+
+    def handle_callback(self, task: asyncio.Task):
+        self.done.put_nowait(task)
+        self.todo.remove(task)
 
     def __aiter__(self):
         return self
 
     async def __anext__(self):
-        self.count += 1
-        if self.count > self.n:
+        if not self.todo:
             raise StopAsyncIteration
-        await asyncio.sleep(self.count, self.count)
-        return self.count
+        item = await self.done.get()
+        return item
+
+
+def async_for_completed(aws: list[Coroutine]):
+    if not isinstance(aws, Iterable):
+        raise TypeError("Должен быть передан список с объектами корутин")
+    for i in aws:
+        if not inspect.iscoroutine(i):
+            raise TypeError("Должен быть передан список с объектами корутин")
+    return ForCompletedIterator(aws)
+
+
+async def coro():
+    await asyncio.sleep(3)
+    return "123"
 
 
 async def main():
-    async for elem in AsyncSimpleIterator(3):
-        print(elem)
+    tasks = [coro(), coro(), coro()]
+    async for res in async_for_completed(tasks):
+        print(f"{res}=")
 
-
-if __name__ == '__main__':
-    start_time = perf_counter()
+if __name__ == "__main__":
     asyncio.run(main())
-    print(f"All done in {perf_counter() - start_time:.2f}c.")
 
